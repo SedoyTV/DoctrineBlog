@@ -1,0 +1,123 @@
+.custom-btn {
+    font-size: 13px;
+    padding: 10px 20px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    color: #000000;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    margin: 10px;
+    z-index: 1;
+    font-weight: bolder;
+}
+
+.custom-btn-danger {
+    background: linear-gradient(45deg, #ffffff, #8f8f8f);
+    background-size: 400% 400%;
+    animation: gradientShift 5s ease infinite;
+}
+
+.custom-btn-secondary {
+    background: linear-gradient(45deg, #8f8f8f, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientShift 5s ease infinite;
+}
+
+.custom-btn-primary {
+    background: linear-gradient(45deg, #ff0000, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientShift 5s ease infinite;
+}
+.custom-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    transform: scale(0);
+    z-index: -1;
+}
+
+.custom-btn:hover::before {
+    transform: scale(1.1);
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.custom-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.5s, opacity 0.5s;
+    z-index: -1;
+}
+
+.custom-btn:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.custom-btn:hover {
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 1);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+}
+
+.custom-btn:active::before {
+    transform: scale(0.9);
+}
+
+.custom-btn:active::after {
+    transform: scale(1.1);
+    opacity: 0;
+}
+.btn-ed-del:hover i{
+    animation: icon-bounce 0.5s;
+}
+
+@keyframes icon-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}

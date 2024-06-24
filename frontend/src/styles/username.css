@@ -1,0 +1,13 @@
+.user-name {
+    font-weight: bold;
+    padding: 5px 10px;
+    background: linear-gradient(45deg, #989898, #ffffff);
+    border-radius: 20px;
+    margin-left: 15px;
+    transition: 0.5s;
+    color: #1a202c;
+}
+
+.user-name:hover {
+    transform: rotate(15deg);
+}

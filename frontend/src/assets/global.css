@@ -1,0 +1,96 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+    font-family: Arial, sans-serif;
+    background-color: rgba(186, 191, 200, 0.56);
+
+}
+.header {
+    background: linear-gradient(to right, #000000, #ffffff, #000000);
+    color: #fff;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+    z-index: -1;
+    transition: width 0.3s ease-out;
+}
+
+.header:hover::after {
+    width: 100%;
+}
+
+.header h1 {
+
+
+    margin: 0;
+    text-transform: uppercase;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+    to {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    transition: 2s;
+}
+
+.logo:hover {
+    transform: rotate(360deg) scale(2);
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    background-color: rgb(0, 0, 0);
+    border-radius: 50%;
+    animation: rise 10s infinite ease-in-out;
+}
+
+.bubble-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+@keyframes rise {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+    }
+}
+
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
