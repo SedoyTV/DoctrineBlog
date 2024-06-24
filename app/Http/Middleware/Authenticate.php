@@ -2,16 +2,26 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
-use Illuminate\Http\Request;
 
-class Authenticate extends Middleware
+use Closure;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+
+class Authenticate
 {
-    /**
-     * Get the path the user should be redirected to when they are not authenticated.
-     */
-    protected function redirectTo(Request $request): ?string
+    public function handle(Request $request, Closure $next, ...$guards)
     {
-        return $request->expectsJson() ? null : route('login');
+        if ($guards[0] === 'api') {
+            try {
+                if (! $user = JWTAuth::parseToken()->authenticate()) {
+                    return response()->json(['error' => 'Пользователь не найден'], 404);
+                }
+            } catch (JWTException $e) {
+                return response()->json(['error' => 'Token недействителен'], 401);
+            }
+        }
+
+        return $next($request);
     }
 }

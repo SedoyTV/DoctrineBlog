@@ -1,19 +1,24 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
-/*
-|--------------------------------------------------------------------------
-| API Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register API routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "api" middleware group. Make something great!
-|
-*/
+Route::post('/register', [UserController::class, 'register']);
+Route::post('/login', [UserController::class, 'login']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+
+Route::get('/posts', [PostController::class, 'index']);
+Route::middleware('auth:api')->post('/posts', [PostController::class, 'store']);
+Route::middleware('auth:api')->get('/posts/{post}', [PostController::class, 'show']);
+Route::middleware('auth:api')->put('/posts/{post}', [PostController::class, 'update']);
+Route::middleware('auth:api')->delete('/posts/{post}', [PostController::class, 'destroy']);
+
+Route::get('categories', [CategoryController::class, 'index']);
+Route::middleware('auth:api')->get('categories/{category}', [CategoryController::class, 'show']);
+Route::middleware('auth:api')->post('categories', [CategoryController::class, 'store']);
+Route::middleware('auth:api')->put('/categories/{category}', [CategoryController::class, 'update']);
+Route::middleware('auth:api')->delete('/categories/{category}', [CategoryController::class, 'destroy']);
+
+
